@@ -10,12 +10,14 @@
     <!-- Add mute button icon library -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
+    <!-- Bootstrap CSS for styling -->
     <link
       rel="stylesheet"
       href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css"
       integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2"
       crossorigin="anonymous"
     />
+    <!-- Custom CSS for the game -->
     <link rel="stylesheet" href="style.css" type="text/css" />
     <!-- Global site tag (gtag.js) - Google Analytics -->
     <script
@@ -51,22 +53,23 @@
     </audio>
 
     <script>
+      // Initialize the audio player and volume slider
       var x = document.getElementById("myAudio");
-      var sliderLevel = document.querySelector('#volume-slider')
-      x.volume = sliderLevel.value/100
+      var sliderLevel = document.querySelector('#volume-slider');
+      x.volume = sliderLevel.value / 100;
       sliderLevel.addEventListener("change", function(e) {
         x.volume = e.currentTarget.value / 100;
-      })
+      });
 
+      // Function to play or pause the audio
       function playAudio(btn) {
-           if(x.paused) {
-             x.play();
-             document.querySelector(".btn-primary").innerHTML = "Pause Music";
-           }
-           else {
-             x.pause();
-             document.querySelector(".btn-primary").innerHTML = "Play Music";
-           }
+        if(x.paused) {
+          x.play();
+          document.querySelector(".btn-primary").innerHTML = "Pause Music";
+        } else {
+          x.pause();
+          document.querySelector(".btn-primary").innerHTML = "Play Music";
+        }
       }
     </script>
 
@@ -121,6 +124,7 @@
         <button type="button" class="fun-btn" onclick="enableFunMode()">Fun Mode!</button>
       </div>
 
+      <!-- Display the current move -->
       <h2 id = "move">PLAYER plays as O!</h2>
 
       <!-- Scoreboard Table -->
@@ -186,6 +190,7 @@
 <!-- Dark Mode Script -->
 <script>
   window.onload = function() {
+    // Load the current theme from local storage and apply it
     const currentMode = localStorage.getItem('theme') || 'light-mode';
     document.body.classList.add(currentMode);
     if(currentMode == "dark-mode"){
@@ -193,6 +198,7 @@
     }
   };
   
+  // Function to toggle dark mode
   function enableDarkMode() {
      setDarkMode();
   
@@ -207,25 +213,26 @@
      localStorage.setItem('theme', newMode);
   }
   
+  // Function to apply dark mode styles
   function setDarkMode() {
      var main = document.body;
-     var hero = document.getElementsByClassName('navbar')[0]
-     var container = document.getElementById('play')
-     var darkToggle = document.getElementsByClassName('btn')
-     var heroText = document.getElementsByClassName('navbar-brand')
-     var arr = Array.prototype.slice.call(heroText)
+     var hero = document.getElementsByClassName('navbar')[0];
+     var container = document.getElementById('play');
+     var darkToggle = document.getElementsByClassName('btn');
+     var heroText = document.getElementsByClassName('navbar-brand');
+     var arr = Array.prototype.slice.call(heroText);
      var instruct = document.getElementsByClassName('instructions')[0];
      var startBtns = document.getElementsByClassName('start-btn');
      var blocks = document.querySelectorAll('.block');
   
      arr.forEach(element => {
-      element.classList.toggle('dark-text')
+      element.classList.toggle('dark-text');
      });
   
      if (darkToggle[1].textContent === "Dark Mode"){
-       darkToggle[1].textContent = "Light Mode"
+       darkToggle[1].textContent = "Light Mode";
      } else {
-       darkToggle[1].textContent = "Dark Mode"
+       darkToggle[1].textContent = "Dark Mode";
      }
   
      hero.classList.toggle("dark-hero");
@@ -244,8 +251,9 @@
      // Add the dark-mode class to body
      document.body.classList.toggle('dark-btns');
   }
-  </script>
+</script>
 
+<!-- Facebook Instant Games SDK -->
 <script src="https://connect.facebook.net/en_US/fbinstant.6.3.js"></script>
 <script src="app.js"></script>
 </body>
